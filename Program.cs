@@ -13,6 +13,12 @@ namespace AsyncApp
         // Pass WebProxy object ??
         // https://docs.microsoft.com/en-us/dotnet/api/system.net.webproxy?view=netframework-4.7.2
 
+        // TODO
+        // - add ability to use proxies
+        // - automate feedback from proxies, favoribility system
+        // - return information from scraped websites, HTTP response code etc
+        // - seperate out returned xpath search in to seperate function
+
         static void Main(string[] args)
         {	
             List<string> urls = new List<string>();
@@ -37,10 +43,11 @@ namespace AsyncApp
             try	
             {
                 HttpResponseMessage response = await client.GetAsync(url);
-
+                
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
+                
                 ResponseXpathPartAsync(responseBody);
                 //Console.WriteLine(responseBody);
             }  
