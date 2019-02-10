@@ -10,6 +10,9 @@ namespace AsyncApp
     {
         // https://dotnetcoretutorials.com/2018/02/27/loading-parsing-web-page-net-core/
 
+        // Pass WebProxy object ??
+        // https://docs.microsoft.com/en-us/dotnet/api/system.net.webproxy?view=netframework-4.7.2
+
         static void Main(string[] args)
         {	
             List<string> urls = new List<string>();
@@ -30,33 +33,54 @@ namespace AsyncApp
             handler.UseDefaultCredentials = true;
 
             HttpClient client = new HttpClient(handler);
-            var response = await client.GetAsync(url);
-            var pageContents = await response.Content.ReadAsStringAsync();
-            // Console.WriteLine(pageContents);
-            // Console.ReadLine();
+            // https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclienthandler?view=netframework-4.7.2
+            try	
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
 
-            HtmlDocument pageDocument = new HtmlDocument();
-            pageDocument.LoadHtml(pageContents);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }  
+            catch(HttpRequestException e)
+            {
+                Console.WriteLine("\nException Caught!");	
+                Console.WriteLine("Message :{0} ",e.Message);
+            }
+
+            // Need to call dispose on the HttpClient and HttpClientHandler objects 
+            // when done using them, so the app doesn't leak resources
+            // handler.Dispose(true);
+            // client.Dispose(true);
+
+            // var response = await client.GetAsync(url);
+            // var pageContents = await response.Content.ReadAsStringAsync();
+            // // Console.WriteLine(pageContents);
+            // // Console.ReadLine();
+
+            // HtmlDocument pageDocument = new HtmlDocument();
+            // pageDocument.LoadHtml(pageContents);
             
-            //var headlineText = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'pb-f-homepage-hero')]//h3)[1]").InnerText;
-            var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
-            Console.WriteLine("--------------------------");
-            Console.WriteLine(rowLists[0].OuterHtml);
-            // foreach (var row in rowLists)
-            // {
-            //     Console.WriteLine(row.InnerHtml);
-            // }
-            //var childs = rowLists[0].ChildNodes;
+            // //var headlineText = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'pb-f-homepage-hero')]//h3)[1]").InnerText;
+            // var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
+            // Console.WriteLine("--------------------------");
+            // Console.WriteLine(rowLists[0].OuterHtml);
+            // // foreach (var row in rowLists)
+            // // {
+            // //     Console.WriteLine(row.InnerHtml);
+            // // }
+            // //var childs = rowLists[0].ChildNodes;
 
-            // var childs = rowLists[0].Descendants();
-            // Console.WriteLine(childs.GetEnumerator());
-            // foreach (var child in childs)
-            // {
+            // // var childs = rowLists[0].Descendants();
+            // // Console.WriteLine(childs.GetEnumerator());
+            // // foreach (var child in childs)
+            // // {
 
-            //     Console.WriteLine(child.OuterHtml);
+            // //     Console.WriteLine(child.OuterHtml);
 
-            // }
-            //
+            // // }
+            // //
 
         }
        
