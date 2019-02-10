@@ -17,8 +17,8 @@ namespace AsyncApp
         {	
             List<string> urls = new List<string>();
             urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
-            // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
-            // urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
+            urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
+            urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
             //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
             foreach (var url in urls)
             {
@@ -54,7 +54,6 @@ namespace AsyncApp
             // when done using them, so the app doesn't leak resources
             // handler.Dispose(true);
             // client.Dispose(true);
-
         }
 
         static void ResponseXpathPartAsync(string pageContents)
@@ -63,9 +62,11 @@ namespace AsyncApp
             pageDocument.LoadHtml(pageContents);
             
             //var headlineText = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'pb-f-homepage-hero')]//h3)[1]").InnerText;
-            var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
-            Console.WriteLine("--------------------------");
-            Console.WriteLine(rowLists[0].OuterHtml);
+            //var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
+            var title = pageDocument.DocumentNode.SelectSingleNode("(//title)");
+            //Console.WriteLine("--------------------------");
+            Console.WriteLine(title.OuterHtml);
+
             // foreach (var row in rowLists)
             // {
             //     Console.WriteLine(row.InnerHtml);
@@ -76,11 +77,8 @@ namespace AsyncApp
             // Console.WriteLine(childs.GetEnumerator());
             // foreach (var child in childs)
             // {
-
             //     Console.WriteLine(child.OuterHtml);
-
             // }
-            //
         }
        
     }
