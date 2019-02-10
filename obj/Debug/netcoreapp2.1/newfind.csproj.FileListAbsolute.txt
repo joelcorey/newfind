@@ -1,0 +1,11 @@
+/home/joel/install/project/newfind/bin/Debug/netcoreapp2.1/newfind.deps.json
+/home/joel/install/project/newfind/bin/Debug/netcoreapp2.1/newfind.runtimeconfig.json
+/home/joel/install/project/newfind/bin/Debug/netcoreapp2.1/newfind.runtimeconfig.dev.json
+/home/joel/install/project/newfind/bin/Debug/netcoreapp2.1/newfind.dll
+/home/joel/install/project/newfind/bin/Debug/netcoreapp2.1/newfind.pdb
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.csprojAssemblyReference.cache
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.csproj.CoreCompileInputs.cache
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.AssemblyInfoInputs.cache
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.AssemblyInfo.cs
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.dll
+/home/joel/install/project/newfind/obj/Debug/netcoreapp2.1/newfind.pdb
