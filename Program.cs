@@ -17,7 +17,7 @@ namespace AsyncApp
         // - add ability to use proxies
         // - automate feedback from proxies, favoribility system
         // - return information from scraped websites, HTTP response code etc
-        // - seperate out returned xpath search in to seperate function
+        // - Make most/all methods async?
 
         static void Main(string[] args)
         {	
@@ -48,7 +48,7 @@ namespace AsyncApp
 
                 string responseBody = await response.Content.ReadAsStringAsync();
                 
-                ResponseXpathPartAsync(responseBody);
+                ResponseXpathParseAsync(responseBody);
                 //Console.WriteLine(responseBody);
             }  
             catch(HttpRequestException e)
@@ -63,17 +63,29 @@ namespace AsyncApp
             // client.Dispose(true);
         }
 
-        static void ResponseXpathPartAsync(string pageContents)
+        static HtmlAgilityPack.HtmlNode SearchXpathAsync(string contents, string xpathSearchString)
         {
+            // Make async in future
             HtmlDocument pageDocument = new HtmlDocument();
-            pageDocument.LoadHtml(pageContents);
+            pageDocument.LoadHtml(contents);
+
+            HtmlAgilityPack.HtmlNode xpathObject = pageDocument.DocumentNode.SelectSingleNode(xpathSearchString);
+            return xpathObject; 
+        }
+
+        static void ResponseXpathParseAsync(string pageContents)
+        {
+            // HtmlDocument pageDocument = new HtmlDocument();
+            // pageDocument.LoadHtml(pageContents);
             
             //var headlineText = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'pb-f-homepage-hero')]//h3)[1]").InnerText;
             //var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
-            var title = pageDocument.DocumentNode.SelectSingleNode("(//title)");
+            //var title = pageDocument.DocumentNode.SelectSingleNode("(//title)");
+
+            HtmlAgilityPack.HtmlNode title = SearchXpathAsync(pageContents, "(//title)");
             //Console.WriteLine("--------------------------");
             Console.WriteLine(title.OuterHtml);
-
+            //Console.WriteLine(title.GetType());
             // foreach (var row in rowLists)
             // {
             //     Console.WriteLine(row.InnerHtml);
