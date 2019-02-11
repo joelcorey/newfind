@@ -1,8 +1,11 @@
 ﻿﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AsyncApp
 {
@@ -21,15 +24,20 @@ namespace AsyncApp
 
         static void Main(string[] args)
         {	
-            List<string> urls = new List<string>();
-            urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
-            urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
-            urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
-            //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
-            foreach (var url in urls)
+            JObject userAgentList = JObject.Parse(File.ReadAllText(@"useragent.json"));
+            foreach (var userAgent in userAgentList)
             {
-                MainAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
+                Console.WriteLine(userAgent);
             }
+            // List<string> urls = new List<string>();
+            // urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
+            // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
+            // urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
+            // //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
+            // foreach (var url in urls)
+            // {
+            //     MainAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
+            // }
             Console.ReadLine();
         }
 

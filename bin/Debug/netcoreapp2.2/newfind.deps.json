@@ -1,14 +1,15 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "c948ab717866c7da134b86305dce2ec8e5520995"
+    "signature": "10637ba41cc3f12819b2ebabd0a6768eeb88c510"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "newfind/1.0.0": {
         "dependencies": {
-          "HtmlAgilityPack": "1.8.14"
+          "HtmlAgilityPack": "1.8.14",
+          "Newtonsoft.Json": "12.0.1"
         },
         "runtime": {
           "newfind.dll": {}
@@ -25,6 +26,14 @@
           "lib/netstandard2.0/HtmlAgilityPack.dll": {
             "assemblyVersion": "1.8.14.0",
             "fileVersion": "1.8.14.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
           }
         }
       },
@@ -619,6 +628,13 @@
       "sha512": "sha512-FMkYl2W7mFtkkTcSwWUr8gyLXNO0o34P+/qHbyOtmTwrqMy/OnRgK/OMrZPHGRAESVCCxPQrwuaoFbQSXK1KfA==",
       "path": "htmlagilitypack/1.8.14",
       "hashPath": "htmlagilitypack.1.8.14.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jmVyoEyk0In8r+AObYQyFKVFm7uSRzE0XSHSbEtBJcZDMV6DqJoyB4FLcHwprPVhAh826so0db3DIKXVnpGoPA==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
