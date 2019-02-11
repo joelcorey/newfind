@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -27,8 +28,8 @@ namespace AsyncApp
                   
             List<string> urls = new List<string>();
             urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
-            urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
-            urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
+            // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
+            // urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
             //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
             foreach (var url in urls)
             {
@@ -52,9 +53,10 @@ namespace AsyncApp
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-                
+
+                // At a later date response codes will be important:
+                //int responseCode = (int)response.StatusCode;
                 ResponseXpathParse(responseBody);
-                //Console.WriteLine(responseBody);
             }  
             catch(HttpRequestException e)
             {
@@ -68,13 +70,7 @@ namespace AsyncApp
             // client.Dispose(true);
         }
 
-        static String GetUserAgent()
-        {
-            String userAgent = "Mozilla/5.0 (compatible; AcmeInc/1.0)";
-            return userAgent;
-        }
-
-        static HtmlAgilityPack.HtmlNode SearchXpath(string contents, string xpathSearchString)
+        static HtmlAgilityPack.HtmlNode SearchXpathSingle(string contents, string xpathSearchString)
         {
             // Make async in future ?
             HtmlDocument pageDocument = new HtmlDocument();
@@ -84,10 +80,21 @@ namespace AsyncApp
             return xpathObject; 
         }
 
+        static HtmlAgilityPack.HtmlNodeCollection SearchXpathMulti(string contents, string xpathSearchString)
+        {
+            // Make async in future ?
+            HtmlDocument htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(contents);
+
+            HtmlAgilityPack.HtmlNodeCollection xpathObject = htmlDoc.DocumentNode.SelectNodes(xpathSearchString);
+            return xpathObject; 
+        }
+
+
         static void ResponseXpathParse(string pageContents)
         {
             // Make async in future ?
-            HtmlAgilityPack.HtmlNode title = SearchXpath(pageContents, "(//title)");
+            HtmlAgilityPack.HtmlNode title = SearchXpathSingle(pageContents, "(//title)");
             Console.WriteLine(title.OuterHtml);
             //Console.WriteLine(title.GetType());
             // foreach (var row in rowLists)

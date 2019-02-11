@@ -7,9 +7,7 @@ using Newtonsoft.Json.Linq;
 public class Config
 {
     private readonly Random random = new Random();
-    private int randomNumber;
-    //private int userAgentListLength;
-
+ 
     private JObject userAgentObject;
     private JArray userAgentArray;
 
@@ -23,11 +21,6 @@ public class Config
     public int UserAgentListLength
     {
         get { return this.userAgentArray.Count; }
-    }
-
-    public int RandomNumber
-    {
-        get { return this.random.Next(3000) + 1000; }
     }
 
     public Config()
