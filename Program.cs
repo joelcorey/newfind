@@ -39,6 +39,7 @@ namespace AsyncApp
             handler.UseDefaultCredentials = true;
 
             HttpClient client = new HttpClient(handler);
+            client.DefaultRequestHeaders.Add("User-Agent", GetUserAgent());
             // https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclienthandler?view=netframework-4.7.2
             try	
             {
@@ -48,7 +49,7 @@ namespace AsyncApp
 
                 string responseBody = await response.Content.ReadAsStringAsync();
                 
-                ResponseXpathParseAsync(responseBody);
+                ResponseXpathParse(responseBody);
                 //Console.WriteLine(responseBody);
             }  
             catch(HttpRequestException e)
@@ -63,9 +64,15 @@ namespace AsyncApp
             // client.Dispose(true);
         }
 
+        static String GetUserAgent()
+        {
+            String userAgent = "Mozilla/5.0 (compatible; AcmeInc/1.0)";
+            return userAgent;
+        }
+
         static HtmlAgilityPack.HtmlNode SearchXpath(string contents, string xpathSearchString)
         {
-            // Make async in future
+            // Make async in future ?
             HtmlDocument pageDocument = new HtmlDocument();
             pageDocument.LoadHtml(contents);
 
@@ -73,8 +80,9 @@ namespace AsyncApp
             return xpathObject; 
         }
 
-        static void ResponseXpathParseAsync(string pageContents)
+        static void ResponseXpathParse(string pageContents)
         {
+            // Make async in future ?
             HtmlAgilityPack.HtmlNode title = SearchXpath(pageContents, "(//title)");
             Console.WriteLine(title.OuterHtml);
             //Console.WriteLine(title.GetType());
