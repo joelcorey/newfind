@@ -63,7 +63,7 @@ namespace AsyncApp
             // client.Dispose(true);
         }
 
-        static HtmlAgilityPack.HtmlNode SearchXpathAsync(string contents, string xpathSearchString)
+        static HtmlAgilityPack.HtmlNode SearchXpath(string contents, string xpathSearchString)
         {
             // Make async in future
             HtmlDocument pageDocument = new HtmlDocument();
@@ -75,15 +75,7 @@ namespace AsyncApp
 
         static void ResponseXpathParseAsync(string pageContents)
         {
-            // HtmlDocument pageDocument = new HtmlDocument();
-            // pageDocument.LoadHtml(pageContents);
-            
-            //var headlineText = pageDocument.DocumentNode.SelectSingleNode("(//div[contains(@class,'pb-f-homepage-hero')]//h3)[1]").InnerText;
-            //var rowLists = pageDocument.DocumentNode.SelectNodes("(//li[contains(@class,'result-row')])");
-            //var title = pageDocument.DocumentNode.SelectSingleNode("(//title)");
-
-            HtmlAgilityPack.HtmlNode title = SearchXpathAsync(pageContents, "(//title)");
-            //Console.WriteLine("--------------------------");
+            HtmlAgilityPack.HtmlNode title = SearchXpath(pageContents, "(//title)");
             Console.WriteLine(title.OuterHtml);
             //Console.WriteLine(title.GetType());
             // foreach (var row in rowLists)
