@@ -24,32 +24,26 @@ namespace AsyncApp
         static void Main(string[] args)
         {	
             Config config = new Config();
-
-            //Console.WriteLine(config.UserAgentListLength);
-            for (int i = 0; i < 100; i++)
-            {
-                Console.WriteLine(config.GetUserAgentRandom()); 
-            }
                   
-            // List<string> urls = new List<string>();
-            // urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
-            // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
-            // urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
-            // //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
-            // foreach (var url in urls)
-            // {
-            //     MainAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
-            // }
+            List<string> urls = new List<string>();
+            urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
+            urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
+            urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
+            //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
+            foreach (var url in urls)
+            {
+                MainAsync(url, config.GetUserAgentRandom()).ConfigureAwait(false).GetAwaiter().GetResult();
+            }
             Console.ReadLine();
         }
 
-        async static Task MainAsync(string url)
+        async static Task MainAsync(string url, string userAgent)
         {
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
             HttpClient client = new HttpClient(handler);
-            client.DefaultRequestHeaders.Add("User-Agent", GetUserAgent());
+            client.DefaultRequestHeaders.Add("User-Agent", userAgent);
             // https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclienthandler?view=netframework-4.7.2
             try	
             {
