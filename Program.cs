@@ -24,13 +24,13 @@ namespace AsyncApp
         static void Main(string[] args)
         {	
             Config config = new Config();
-            Console.WriteLine(config.RandomNumber);
-            Console.WriteLine(config.RandomNumber);
-            Console.WriteLine(config.RandomNumber);
-            // foreach (var userAgent in userAgentList)
-            // {
-            //     Console.WriteLine(userAgent);
-            // }
+
+            //Console.WriteLine(config.UserAgentListLength);
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(config.GetUserAgentRandom()); 
+            }
+                  
             // List<string> urls = new List<string>();
             // urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
             // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
