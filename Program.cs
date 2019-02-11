@@ -4,8 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 
 namespace AsyncApp
 {
@@ -18,17 +17,20 @@ namespace AsyncApp
 
         // TODO
         // - add ability to use proxies
-        // - automate feedback from proxies, favoribility system
+        // - automate feedback from proxies, favoribility system, what proxies failed, time on target etc
         // - return information from scraped websites, HTTP response code etc
         // - Make most/all methods async?
 
         static void Main(string[] args)
         {	
-            JObject userAgentList = JObject.Parse(File.ReadAllText(@"useragent.json"));
-            foreach (var userAgent in userAgentList)
-            {
-                Console.WriteLine(userAgent);
-            }
+            Config config = new Config();
+            Console.WriteLine(config.RandomNumber);
+            Console.WriteLine(config.RandomNumber);
+            Console.WriteLine(config.RandomNumber);
+            // foreach (var userAgent in userAgentList)
+            // {
+            //     Console.WriteLine(userAgent);
+            // }
             // List<string> urls = new List<string>();
             // urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
             // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
