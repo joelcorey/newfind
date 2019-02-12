@@ -40,22 +40,8 @@ namespace AsyncApp
 
         async static Task MainAsync(string url, string userAgent, string proxyAddress, bool useProxy = false)
         {
-            if(useProxy == true)
-            {
-                HttpClientHandler handler = new HttpClientHandler(){
-                    
-                        Proxy = new WebProxy("58.137.62.133:80"),
-                        UseProxy = true,
-                };
-                handler.UseDefaultCredentials = true;
-            }
-            else
-            {
-                HttpClientHandler handler = new HttpClientHandler(){
-                };
-                handler.UseDefaultCredentials = true;
-            }
-
+            HttpClientHandler handler = ClientHandler(proxyAddress, useProxy);
+          
             HttpClient client = new HttpClient(handler);
             client.DefaultRequestHeaders.Add("User-Agent", userAgent);
             // https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclienthandler?view=netframework-4.7.2
@@ -83,7 +69,7 @@ namespace AsyncApp
             // client.Dispose(true);
         }
 
-        static HttpClientHandler ClientHandler(string proxyAddress, bool useProxy = true)
+        static HttpClientHandler ClientHandler(string proxyAddress, bool useProxy = false)
         {
             HttpClientHandler handler = new HttpClientHandler();
             if(useProxy == true)
