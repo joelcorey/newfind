@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "10637ba41cc3f12819b2ebabd0a6768eeb88c510"
+    "signature": "136104f786e80428e071d63ab9062ca81fbcd8bf"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,10 +9,19 @@
       "newfind/1.0.0": {
         "dependencies": {
           "HtmlAgilityPack": "1.8.14",
-          "Newtonsoft.Json": "12.0.1"
+          "Newtonsoft.Json": "12.0.1",
+          "DotNetEnv": "1.2.0"
         },
         "runtime": {
           "newfind.dll": {}
+        }
+      },
+      "DotNetEnv/1.2.0": {
+        "runtime": {
+          "lib/netstandard1.3/DotNetEnv.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
         }
       },
       "HtmlAgilityPack/1.8.14": {
@@ -621,6 +630,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DotNetEnv/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rz5dn2dP9yyvZTAR5Ae+5RuyvrPG9Hd3qgMJ4/5Lrv6DzHtowSiV2hpEFbRjRLJFug7TzHfa7titUQnwNMhUIA==",
+      "path": "dotnetenv/1.2.0",
+      "hashPath": "dotnetenv.1.2.0.nupkg.sha512"
     },
     "HtmlAgilityPack/1.8.14": {
       "type": "package",

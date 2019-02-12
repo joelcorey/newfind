@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "DotNetEnv/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/DotNetEnv.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/DotNetEnv.dll": {}
+        }
+      },
       "HtmlAgilityPack/1.8.14": {
         "type": "package",
         "dependencies": {
@@ -1099,6 +1111,18 @@
     }
   },
   "libraries": {
+    "DotNetEnv/1.2.0": {
+      "sha512": "rz5dn2dP9yyvZTAR5Ae+5RuyvrPG9Hd3qgMJ4/5Lrv6DzHtowSiV2hpEFbRjRLJFug7TzHfa7titUQnwNMhUIA==",
+      "type": "package",
+      "path": "dotnetenv/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetenv.1.2.0.nupkg.sha512",
+        "dotnetenv.nuspec",
+        "lib/netstandard1.3/DotNetEnv.dll"
+      ]
+    },
     "HtmlAgilityPack/1.8.14": {
       "sha512": "FMkYl2W7mFtkkTcSwWUr8gyLXNO0o34P+/qHbyOtmTwrqMy/OnRgK/OMrZPHGRAESVCCxPQrwuaoFbQSXK1KfA==",
       "type": "package",
@@ -3993,7 +4017,8 @@
     ".NETCoreApp,Version=v2.2": [
       "HtmlAgilityPack >= 1.8.14",
       "Microsoft.NETCore.App >= 2.2.0",
-      "Newtonsoft.Json >= 12.0.1"
+      "Newtonsoft.Json >= 12.0.1",
+      "dotnetenv >= 1.2.0"
     ]
   },
   "packageFolders": {
@@ -4048,6 +4073,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.1, )"
+          },
+          "dotnetenv": {
+            "target": "Package",
+            "version": "[1.2.0, )"
           }
         },
         "imports": [

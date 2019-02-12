@@ -10,24 +10,26 @@ public class Config
  
     private JObject userAgentObject;
     private JArray userAgentArray;
-
     private int userAgentListLength;
-    
-    public string UserAgentRandom
-    {
-        get { return "hi"; }
-    }
+    private string ipStackApiKey;
 
     public int UserAgentListLength
     {
-        get { return this.userAgentArray.Count; }
+        get { return userAgentArray.Count; }
+    }
+    public string IpStackApiKey
+    {
+        get { return ipStackApiKey; }
     }
 
     public Config()
     {
+        DotNetEnv.Env.Load("./.env.development");
+
         // https://www.newtonsoft.com/json/help/html/QueryingLINQtoJSON.htm
         this.userAgentObject = JObject.Parse(File.ReadAllText(@"useragentlite.json"));
         this.userAgentArray = (JArray)userAgentObject["userAgents"];
+        this.ipStackApiKey = System.Environment.GetEnvironmentVariable("IPSTACK_API_KEY");
     }
 
     public void DisplayUserAgents()

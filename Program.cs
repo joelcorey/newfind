@@ -25,9 +25,11 @@ namespace AsyncApp
         static void Main(string[] args)
         {	
             Config config = new Config();
-                  
+
             List<string> urls = new List<string>();
-            urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
+            urls.Add("http://checkip.dyndns.com/");
+            //urls.Add("http://api.ipstack.com/203.150.250.131?access_key=" + config.IpStackApiKey);
+            //urls.Add("https://salem.craigslist.org/d/software-qa-dba-etc/search/sof");
             // urls.Add("https://salem.craigslist.org/d/web-html-info-design/search/web");
             // urls.Add("https://salem.craigslist.org/d/computer-gigs/search/cpg");
             //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
@@ -53,14 +55,16 @@ namespace AsyncApp
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
+                Console.WriteLine(responseBody);
+
                 // At a later date response codes will be important:
                 //int responseCode = (int)response.StatusCode;
-                ResponseXpathParse(responseBody);
+                //ResponseXpathParse(responseBody);
             }  
             catch(HttpRequestException e)
             {
                 Console.WriteLine("\nException Caught!");	
-                Console.WriteLine("Message :{0} ",e.Message);
+                Console.WriteLine("Message :{0} ", e.Message);
             }
 
             // Need to call dispose on the HttpClient and HttpClientHandler objects 
