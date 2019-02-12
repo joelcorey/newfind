@@ -33,15 +33,28 @@ namespace AsyncApp
             //string url = "https://salem.craigslist.org/d/web-html-info-design/search/web";
             foreach (var url in urls)
             {
-                MainAsync(url, config.GetUserAgentRandom()).ConfigureAwait(false).GetAwaiter().GetResult();
+                MainAsync(url, config.GetUserAgentRandom(), "58.137.62.133:80", true).ConfigureAwait(false).GetAwaiter().GetResult();
             }
             Console.ReadLine();
         }
 
-        async static Task MainAsync(string url, string userAgent)
+        async static Task MainAsync(string url, string userAgent, string proxyAddress, bool useProxy = false)
         {
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
+            if(useProxy == true)
+            {
+                HttpClientHandler handler = new HttpClientHandler(){
+                    
+                        Proxy = new WebProxy("58.137.62.133:80"),
+                        UseProxy = true,
+                };
+                handler.UseDefaultCredentials = true;
+            }
+            else
+            {
+                HttpClientHandler handler = new HttpClientHandler(){
+                };
+                handler.UseDefaultCredentials = true;
+            }
 
             HttpClient client = new HttpClient(handler);
             client.DefaultRequestHeaders.Add("User-Agent", userAgent);
@@ -68,6 +81,18 @@ namespace AsyncApp
             // when done using them, so the app doesn't leak resources
             // handler.Dispose(true);
             // client.Dispose(true);
+        }
+
+        static HttpClientHandler ClientHandler(string proxyAddress, bool useProxy = true)
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            if(useProxy == true)
+            {
+                handler.Proxy = new WebProxy(proxyAddress);
+                handler.UseProxy = true;
+            }
+            handler.UseDefaultCredentials = true;
+            return handler;
         }
 
         static HtmlAgilityPack.HtmlNode SearchXpathSingle(string contents, string xpathSearchString)
