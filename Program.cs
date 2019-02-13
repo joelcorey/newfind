@@ -17,14 +17,17 @@ namespace AsyncApp
         // https://docs.microsoft.com/en-us/dotnet/api/system.net.webproxy?view=netframework-4.7.2
 
         // TODO
-        // - add ability to use proxies
+        // - Testing: add ability to use proxies
+        // - function: test proxy with https://iplookup.flagfox.net 
+        // - function: test proxy with http://dyndns.com
+        // - function: test: comparitive between iplookup and dyndns
         // - automate feedback from proxies, favoribility system, what proxies failed, time on target etc
         // - return information from scraped websites, HTTP response code etc
         // - Make most/all methods async?
 
         static void Main(string[] args)
         {	
-            Config config = new Config();
+            Config config = new Config(); // https://iplookup.flagfox.net
 
             List<string> urls = new List<string>();
             urls.Add("http://checkip.dyndns.com/");
